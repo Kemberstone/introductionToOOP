@@ -97,9 +97,18 @@ double distance(const Point& A,const Point& B)
 	return distance;
 }
 
+Point operator+(const Point& left, const Point& right)
+{
+	Point result;
+	result.set_x(left.get_x() + right. get_x());
+	result.set_x(left.get_y() + right. get_y());
+	return result;
+}
+
 //#define STRUCT_POINT
 //#define DISTANCE_CHECK
 //#define CONSTRUCTORS_CHEK
+//#define ASSINGMENT_CHEK
 
 void main()
 {
@@ -160,6 +169,7 @@ void main()
 
 #endif
 
+#ifdef ASSINGMENT_CHEK
 	int a, b, c;
 
 	a = b = c = 0;
@@ -171,5 +181,11 @@ void main()
 	cout << delimiter << endl;
 	A.print();
 	B.print();
+	C.print();
+#endif // ASSINGMENT_CHEK
+
+	Point A(2, 3);
+	Point B(7, 8);
+	Point C = A + B;
 	C.print();
 }
