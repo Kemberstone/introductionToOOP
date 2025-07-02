@@ -60,6 +60,14 @@ public:
 		cout << "Destructor:\t\t " << this << endl;
 	}
 
+	//Operators
+	Point operator = (const Point & other)
+	{
+		this->x = other.x;
+		this->y = other.y;
+		cout << "CopyAssignment: \t\t" << this << endl;
+		return *this;
+	}
 
 
 	double distance(const Point& other)const
@@ -90,7 +98,7 @@ double distance(const Point& A,const Point& B)
 }
 
 //#define STRUCT_POINT
-#define DISTANCE_CHECK
+//#define DISTANCE_CHECK
 //#define CONSTRUCTORS_CHEK
 
 void main()
@@ -145,5 +153,23 @@ void main()
 
 	Point D = C;
 	D.print();
+
+	Point E; //Default constructor
+	E = D;   //Assignment operator
+	E.print();
+
 #endif
+
+	int a, b, c;
+
+	a = b = c = 0;
+
+	cout << a << "\t" << b << "\t" << c << endl;
+
+	Point A, B, C;
+	A = B = C = Point(2, 3); //Здесь мы явно вызываем конструктор, и создаем временный безымянный объект
+	cout << delimiter << endl;
+	A.print();
+	B.print();
+	C.print();
 }
