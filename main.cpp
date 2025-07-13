@@ -61,7 +61,7 @@ public:
 	}
 
 	//Operators
-	Point operator = (const Point & other)
+	Point& operator = (const Point& other)
 	{
 		this->x = other.x;
 		this->y = other.y;
@@ -69,6 +69,20 @@ public:
 		return *this;
 	}
 
+	Point& operator++()
+	{
+		x++;
+		y++;
+		return *this;
+	}
+
+	Point operator++(int)
+	{
+		Point old = *this;
+		x++;
+		y++;
+		return old;
+	}
 
 	double distance(const Point& other)const
 	{
@@ -101,14 +115,31 @@ Point operator+(const Point& left, const Point& right)
 {
 	Point result;
 	result.set_x(left.get_x() + right. get_x());
-	result.set_x(left.get_y() + right. get_y());
+	result.set_y(left.get_y() + right. get_y());
 	return result;
+}
+
+bool operator == (const Point& left, const Point& right)
+{
+	/*if (left.get_x() == right.get_x() && left.get_y() == right.get_y())
+		return true;
+	else
+		return false;*/
+
+	return (left.get_x() == right.get_x() && left.get_y() == right.get_y());
+
+}
+
+bool operator != (const Point& left, const Point& right)
+{
+	return !(left == right);
 }
 
 //#define STRUCT_POINT
 //#define DISTANCE_CHECK
 //#define CONSTRUCTORS_CHEK
 //#define ASSINGMENT_CHEK
+//#define ARITHMETICAL_OPERATORS_CHEK
 
 void main()
 {
@@ -184,8 +215,18 @@ void main()
 	C.print();
 #endif // ASSINGMENT_CHEK
 
+#ifdef ARITHMETICAL_OPERATORS_CHEK
 	Point A(2, 3);
 	Point B(7, 8);
 	Point C = A + B;
 	C.print();
+
+	A = ++B;
+	A.print();
+	B.print();
+#endif  //ARITHMETICAL_OPERATORS_CHEK
+
+	cout << (Point(2, 3) != Point(2, 3)) << endl;
+	
+
 }
